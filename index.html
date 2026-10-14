@@ -1,596 +1,616 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>অনলাইন উত্তরাধিকার সনদ যাচাই</title>
-    <link href="https://sonodbd.com/assets/vendors/bangla_web_fonts/solaiman-lipi/font.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>অনলাইন উত্তরাধিকার সনদ যাচাই</title>
 
-        body {
-            font-family: 'SolaimanLipi', Arial, sans-serif !important;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            line-height: 1.6;
-        }
+<link href="https://sonodbd.com/assets/vendors/bangla_web_fonts/solaiman-lipi/font.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'SolaimanLipi', Arial, sans-serif !important;
+}
 
-        .verification-header {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+html {
+    overflow-x: auto;
+}
 
-        .verification-header h1 {
-            color: #2d3748;
-            font-size: 28px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
+body {
+    min-width: 1240px;
+    font-family: 'SolaimanLipi', Arial, sans-serif !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+}
 
-        .verification-header .verified-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-top: 15px;
-        }
+.container {
+    width: 1200px;
+    max-width: none;
+    margin: 0 auto;
+}
 
-        .verification-header .verified-badge i {
-            font-size: 16px;
-        }
+.verification-header {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 25px;
-        }
+.verification-header h1 {
+    color: #2d3748;
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
 
-        .info-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 4px solid #667eea;
-        }
+.verification-header .verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg,#10b981 0%,#059669 100%);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 15px;
+}
 
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
+.verification-header .verified-badge i {
+    font-size: 16px;
+}
 
-        .info-card.person-info {
-            border-left-color: #667eea;
-        }
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    margin-bottom: 25px;
+}
 
-        .info-card.certificate-info {
-            border-left-color: #f59e0b;
-        }
+.info-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #667eea;
+    min-width: 0;
+}
 
-        .info-card.institute-info {
-            border-left-color: #10b981;
-        }
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
 
-        .info-card.members-info {
-            border-left-color: #8b5cf6;
-        }
+.info-card.person-info {
+    border-left-color: #667eea;
+}
 
-        .card-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #2d3748;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e5e7eb;
-        }
+.info-card.certificate-info {
+    border-left-color: #f59e0b;
+}
 
-        .card-title i {
-            font-size: 20px;
-            color: #667eea;
-        }
+.info-card.institute-info {
+    border-left-color: #10b981;
+}
 
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 12px 0;
-            border-bottom: 1px solid #f3f4f6;
-        }
+.info-card.members-info {
+    border-left-color: #8b5cf6;
+}
 
-        .info-item:last-child {
-            border-bottom: none;
-        }
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #2d3748;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e5e7eb;
+}
 
-        .info-label {
-            color: #6b7280;
-            font-size: 14px;
-            font-weight: 500;
-            flex: 0 0 45%;
-        }
+.card-title i {
+    font-size: 20px;
+    color: #667eea;
+}
 
-        .info-value {
-            color: #1f2937;
-            font-size: 15px;
-            font-weight: 600;
-            text-align: right;
-            flex: 1;
-            word-break: break-word;
-        }
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
 
-        .info-value.highlight {
-            color: #dc2626;
-            font-size: 16px;
-        }
+.info-item:last-child {
+    border-bottom: none;
+}
 
-        .info-value.certificate-number {
-            color: #059669;
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
+.info-label {
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+    flex: 0 0 45%;
+}
 
-        .full-width-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            margin-top: 25px;
-        }
+.info-value {
+    color: #1f2937;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: right;
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
 
-        .statement-text {
-            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-            border-left: 4px solid #8b5cf6;
-            padding: 25px;
-            border-radius: 10px;
-            font-size: 16px;
-            line-height: 1.8;
-            color: #1f2937;
-            margin-top: 15px;
-            text-align: justify;
-        }
+.info-value.highlight {
+    color: #dc2626;
+    font-size: 16px;
+}
 
-        .members-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-        }
+.info-value.certificate-number {
+    color: #059669;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
 
-        .members-table thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
+.full-width-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    margin-top: 25px;
+}
 
-        .members-table th {
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 14px;
-        }
+.statement-text {
+    background: linear-gradient(135deg,#f9fafb 0%,#f3f4f6 100%);
+    border-left: 4px solid #8b5cf6;
+    padding: 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #1f2937;
+    margin-top: 15px;
+    text-align: justify;
+}
 
-        .members-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #f3f4f6;
-            font-size: 14px;
-        }
+.members-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
 
-        .members-table tbody tr:hover {
-            background: #f9fafb;
-        }
+.members-table thead {
+    background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+    color: white;
+}
 
-        .members-table tbody tr:last-child td {
-            border-bottom: none;
-        }
+.members-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+}
 
-        .members-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
+.members-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 14px;
+}
 
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
+.members-table tbody tr:hover {
+    background: #f9fafb;
+}
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 15px;
-            background: #f9fafb;
-            border-radius: 10px;
-            transition: background 0.3s ease;
-        }
+.members-table tbody tr:last-child td {
+    border-bottom: none;
+}
 
-        .contact-item:hover {
-            background: #f3f4f6;
-        }
+.members-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg,#8b5cf6 0%,#7c3aed 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
 
-        .contact-item i {
-            font-size: 20px;
-            color: #667eea;
-            width: 30px;
-            text-align: center;
-        }
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
 
-        .contact-item .contact-label {
-            color: #6b7280;
-            font-size: 13px;
-        }
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background: #f9fafb;
+    border-radius: 10px;
+    min-width: 0;
+    transition: background 0.3s ease;
+}
 
-        .contact-item .contact-value {
-            color: #1f2937;
-            font-weight: 600;
-            font-size: 14px;
-        }
+.contact-item:hover {
+    background: #f3f4f6;
+}
 
-        .print-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 15px 25px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 1000;
-        }
+.contact-item i {
+    font-size: 20px;
+    color: #667eea;
+    width: 30px;
+    text-align: center;
+    flex-shrink: 0;
+}
 
-        .print-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
-        }
+.contact-item .contact-label {
+    color: #6b7280;
+    font-size: 13px;
+}
 
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
+.contact-item .contact-value {
+    color: #1f2937;
+    font-weight: 600;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
 
-            .print-button {
-                display: none;
-            }
+.print-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+}
 
-            .info-card, .full-width-card {
-                box-shadow: none;
-                border: 1px solid #e5e7eb;
-                page-break-inside: avoid;
-            }
-        }
+.print-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102,126,234,0.5);
+}
 
-        @media (max-width: 768px) {
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #6b7280;
+}
 
-            .verification-header h1 {
-                font-size: 22px;
-                flex-direction: column;
-            }
+.empty-state i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #d1d5db;
+}
 
-            .info-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
 
-            .info-value {
-                text-align: left;
-                margin-top: 5px;
-            }
+.status-badge.death {
+    background: #fee2e2;
+    color: #dc2626;
+}
 
-            .print-button {
-                bottom: 20px;
-                right: 20px;
-                padding: 12px 20px;
-                font-size: 14px;
-            }
+.status-badge.live {
+    background: #d1fae5;
+    color: #059669;
+}
 
-            .members-table {
-                font-size: 12px;
-            }
+/* শুধু প্রিন্ট করার সময় প্রযোজ্য */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        min-width: 0;
+    }
 
-            .members-table th,
-            .members-table td {
-                padding: 8px;
-            }
-        }
+    .container {
+        width: 100%;
+    }
 
-        .empty-state {
-            text-align: center;
-            padding: 40px;
-            color: #6b7280;
-        }
+    .print-button {
+        display: none !important;
+    }
 
-        .empty-state i {
-            font-size: 48px;
-            margin-bottom: 15px;
-            color: #d1d5db;
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .status-badge.death {
-            background: #fee2e2;
-            color: #dc2626;
-        }
-
-        .status-badge.live {
-            background: #d1fae5;
-            color: #059669;
-        }
-    </style>
+    .info-card,
+    .full-width-card {
+        box-shadow: none;
+        border: 1px solid #e5e7eb;
+        page-break-inside: avoid;
+    }
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="verification-header">
-            <h1>
-                <i class="fas fa-certificate"></i>
-                অনলাইন উত্তরাধিকার সনদ যাচাই
-            </h1>
-            <div class="verified-badge">
-                <i class="fas fa-check-circle"></i>
-                সনদ যাচাইকৃত
+<div class="container">
+
+    <div class="verification-header">
+        <h1>
+            <i class="fas fa-certificate"></i>
+            অনলাইন উত্তরাধিকার সনদ যাচাই
+        </h1>
+        <div class="verified-badge">
+            <i class="fas fa-check-circle"></i>
+            সনদ যাচাইকৃত
+        </div>
+    </div>
+
+    <!-- Institute Information Card -->
+    <div class="full-width-card" style="margin-bottom:25px;">
+        <div class="card-title">
+            <i class="fas fa-building"></i>
+            সনদ ইস্যুকৃত প্রতিষ্ঠান
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">প্রতিষ্ঠানের নাম:</span>
+            <span class="info-value">বারাকপুর</span>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">ঠিকানা:</span>
+            <span class="info-value">দিঘলিয়া, খুলনা</span>
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-user-tie"></i>
+                <div>
+                    <div class="contact-label">প্রতিষ্ঠান প্রধান</div>
+                    <div class="contact-value">পুষ্পেন্দু দাশ</div>
+                    <div class="contact-label" style="font-size:12px;">প্রশাসক</div>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <div class="contact-label">যোগাযোগ</div>
+                    <div class="contact-value">01997079656</div>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <div class="contact-label">ইমেইল</div>
+                    <div class="contact-value">
+                        <a href="/cdn-cgi/l/email-protection"
+                           class="__cf_email__"
+                           data-cfemail="fa989b889b918a8f88cecdcececacbcdba9d979b9396d4999597">[email&#160;protected]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-grid">
+
+        <!-- Person Information Card -->
+        <div class="info-card person-info">
+            <div class="card-title">
+                <i class="fas fa-user"></i>
+                ব্যক্তির তথ্য
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">নাম:</span>
+                <span class="info-value">ভগবান কুন্ডু</span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">পিতার নাম:</span>
+                <span class="info-value">মৃত বিশ্বনাথ কুন্ডু</span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">অবস্থা:</span>
+                <span class="info-value">
+                    <span class="status-badge death">
+                        <i class="fas fa-cross"></i>
+                        মৃত
+                    </span>
+                </span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">মন্তব্য:</span>
+                <span class="info-value">
+                    বিঃদ্রঃ আবেদনকারী যদি ইচ্ছাকৃতভাবে কোন উত্তরাধিকার বাদ দিয়ে থাকেন,
+                    বা কোন ভুল তথ্য প্রদান করিয়া থাকেন তাহলে তিনি দায়ী থাকিবেন।
+                    তাহার জন্য কর্তৃপক্ষ কোনভাবেই দায়ী থাকিবেন না এবং উক্ত সনদ
+                    বাতিল বলিয়া গণ্য করা হইবে।
+                </span>
             </div>
         </div>
 
-                    <!-- Institute Information Card -->
-                        <div class="full-width-card" style="margin-bottom: 25px;">
-                <div class="card-title">
-                    <i class="fas fa-building"></i>
-                    সনদ ইস্যুকৃত প্রতিষ্ঠান
-                </div>
-                <div class="info-item">
-                    <span class="info-label">প্রতিষ্ঠানের নাম:</span>
-                    <span class="info-value">বারাকপুর</span>
-                </div>
-                                <div class="info-item">
-                    <span class="info-label">ঠিকানা:</span>
-                    <span class="info-value">দিঘলিয়া, খুলনা</span>
-                </div>
-                                <div class="contact-info">
-                                        <div class="contact-item">
-                        <i class="fas fa-user-tie"></i>
-                        <div>
-                            <div class="contact-label">প্রতিষ্ঠান প্রধান</div>
-                            <div class="contact-value">পুষ্পেন্দু দাশ</div>
-                                                        <div class="contact-label" style="font-size: 12px;">প্রশাসক</div>
-                                                    </div>
-                    </div>
-                                                            <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <div class="contact-label">যোগাযোগ</div>
-                            <div class="contact-value">01997079656</div>
-                        </div>
-                    </div>
-                                                            <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <div class="contact-label">ইমেইল</div>
-                            <div class="contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fa989b889b918a8f88cecdcececacbcdba9d979b9396d4999597">[email&#160;protected]</a></div>
-                        </div>
-                    </div>
-                                    </div>
-            </div>
-            
-            <div class="info-grid">
-                <!-- Person Information Card -->
-                                <div class="info-card person-info">
-                    <div class="card-title">
-                        <i class="fas fa-user"></i>
-                        ব্যক্তির তথ্য
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">নাম:</span>
-                        <span class="info-value">ভগবান কুন্ডু</span>
-                    </div>
-                                        <div class="info-item">
-                        <span class="info-label">পিতার নাম:</span>
-                        <span class="info-value">মৃত বিশ্বনাথ কুন্ডু</span>
-                    </div>
-                                                                                <div class="info-item">
-                        <span class="info-label">অবস্থা:</span>
-                        <span class="info-value">
-                                                            <span class="status-badge death">
-                                    <i class="fas fa-cross"></i>
-                                    মৃত
-                                </span>
-                                                    </span>
-                    </div>
-                                                                                <div class="info-item">
-                        <span class="info-label">মন্তব্য:</span>
-                        <span class="info-value">বিঃদ্রঃ আবেদনকারী যদি ইচ্ছাকৃতভাবে কোন উত্তরাধিকার বাদ দিয়ে থাকেন, বা কোন ভুল তথ্য প্রদান করিয়া থাকেন তাহলে তিনি দায়ী থাকিবেন। তাহার জন্য কর্তৃপক্ষ কোনভাবেই দায়ী থাকিবেন না এবং উক্ত সনদ বাতিল বলিয়া গণ্য করা হইবে।</span>
-                    </div>
-                                    </div>
-                
-                <!-- Certificate Information Card -->
-                                <div class="info-card certificate-info">
-                    <div class="card-title">
-                        <i class="fas fa-file-certificate"></i>
-                        সনদ তথ্য
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">সনদ নম্বর:</span>
-                        <span class="info-value certificate-number">১৫২৯৭৬০০১৬৩০</span>
-                    </div>
-                                        <div class="info-item">
-                        <span class="info-label">ইস্যুর তারিখ:</span>
-                        <span class="info-value highlight">১৪-১০-২০২৬ খ্রিঃ</span>
-                    </div>
-                                                            <div class="info-item">
-                        <span class="info-label">মেয়াদ শেষ:</span>
-                        <span class="info-value">১২-০১-২০২৭ খ্রিঃ</span>
-                    </div>
-                                                            <div class="info-item">
-                        <span class="info-label">সনদের ধরন:</span>
-                        <span class="info-value">ওয়ারিশ</span>
-                    </div>
-                                    </div>
-                
-                <!-- Village Information Card -->
-                                <div class="info-card person-info">
-                    <div class="card-title">
-                        <i class="fas fa-map-marker-alt"></i>
-                        ঠিকানা
-                    </div>
-                                        <div class="info-item">
-                        <span class="info-label">ওয়ার্ড নম্বর:</span>
-                        <span class="info-value">৪</span>
-                    </div>
-                                                            <div class="info-item">
-                        <span class="info-label">গ্রাম:</span>
-                        <span class="info-value">বারাকপুর</span>
-                    </div>
-                                                            <div class="info-item">
-                        <span class="info-label">ডাকঘর:</span>
-                        <span class="info-value">জি.বারাকপুর</span>
-                    </div>
-                                                            <div class="info-item">
-                        <span class="info-label">পোস্টাল কোড:</span>
-                        <span class="info-value">৯২২৩</span>
-                    </div>
-                                                            <div class="info-item">
-                        <span class="info-label">থানা:</span>
-                        <span class="info-value">দিঘলিয়া</span>
-                    </div>
-                                                            <div class="info-item">
-                        <span class="info-label">উপজেলা:</span>
-                        <span class="info-value">দিঘলিয়া</span>
-                    </div>
-                                                            <div class="info-item">
-                        <span class="info-label">জেলা:</span>
-                        <span class="info-value">খুলনা</span>
-                    </div>
-                                    </div>
-                            </div>
-
-            <!-- Inheritance Statement Card -->
-                        <div class="full-width-card">
-                <div class="card-title">
-                    <i class="fas fa-file-alt"></i>
-                    প্রত্যায়ন বিবৃতি
-                </div>
-                <div class="statement-text">
-                    মৃত্যুকালে তিনি নিম্নলিখিত ওয়ারিশগণকে রেখে যান।
-                </div>
-            </div>
-            
-            <!-- Family Members Card -->
-                                    <div class="full-width-card">
-                <div class="card-title">
-                    <i class="fas fa-users"></i>
-                    উত্তরাধিকারগণ
-                                        <span class="members-badge">
-                        <i class="fas fa-user-friends"></i>
-                        মোট: ৩
-                    </span>
-                                    </div>
-                <table class="members-table">
-                    <thead>
-                        <tr>
-                            <th>ক্রমিক</th>
-                            <th>নাম</th>
-                                                                                                                <th>সম্পর্ক</th>
-                                                                                                            </tr>
-                    </thead>
-                    <tbody>
-                                                <tr>
-                            <td>১</td>
-                            <td><strong>সন্ধ্যা রানী কুন্ডু</strong></td>
-                                                                                                                <td>স্ত্রী</td>
-                                                                                                            </tr>
-                                                <tr>
-                            <td>২</td>
-                            <td><strong> পলি রানী কুন্ডু</strong></td>
-                                                                                                                <td>কন্যা</td>
-                                                                                                            </tr>
-                                                <tr>
-                            <td>৩</td>
-                            <td><strong>শিবানী রানী কুন্ডু</strong></td>
-                                                                                                                <td>কন্যা</td>
-                                                                                                            </tr>
-                                                <tr>
-                            
-                                            </tbody>
-                </table>
-            </div>
-            
-            <!-- Wish Statement Card -->
-                        <div class="full-width-card">
-                <div class="card-title">
-                    <i class="fas fa-heart"></i>
-                    শুভেচ্ছা
-                </div>
-                <div class="statement-text">
-                    আমি মরহুমের আত্মার মাগফেরাত ও ওয়ারিশগণকে সর্বাঙ্গীণ মঙ্গল কামনা করি।
-                </div>
-            </div>
-            
-            <!-- Other Information Card -->
-            
-            <!-- Verified By Card -->
-            
+        <!-- Certificate Information Card -->
+        <div class="info-card certificate-info">
+            <div class="card-title">
+                <i class="fas fa-file-certificate"></i>
+                সনদ তথ্য
             </div>
 
-    <button class="print-button" onclick="window.print()">
-        <i class="fas fa-print"></i>
-        প্রিন্ট করুন
-    </button>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+            <div class="info-item">
+                <span class="info-label">সনদ নম্বর:</span>
+                <span class="info-value certificate-number">১৫২৯৭৬০০১৬৩০</span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">ইস্যুর তারিখ:</span>
+                <span class="info-value highlight">১৪-১০-২০২৬ খ্রিঃ</span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">মেয়াদ শেষ:</span>
+                <span class="info-value">১২-০১-২০২৭ খ্রিঃ</span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">সনদের ধরন:</span>
+                <span class="info-value">ওয়ারিশ</span>
+            </div>
+        </div>
+
+        <!-- Village Information Card -->
+        <div class="info-card person-info">
+            <div class="card-title">
+                <i class="fas fa-map-marker-alt"></i>
+                ঠিকানা
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">ওয়ার্ড নম্বর:</span>
+                <span class="info-value">৪</span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">গ্রাম:</span>
+                <span class="info-value">বারাকপুর</span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">ডাকঘর:</span>
+                <span class="info-value">জি.বারাকপুর</span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">পোস্টাল কোড:</span>
+                <span class="info-value">৯২২৩</span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">থানা:</span>
+                <span class="info-value">দিঘলিয়া</span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">উপজেলা:</span>
+                <span class="info-value">দিঘলিয়া</span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">জেলা:</span>
+                <span class="info-value">খুলনা</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Inheritance Statement Card -->
+    <div class="full-width-card">
+        <div class="card-title">
+            <i class="fas fa-file-alt"></i>
+            প্রত্যায়ন বিবৃতি
+        </div>
+
+        <div class="statement-text">
+            মৃত্যুকালে তিনি নিম্নলিখিত ওয়ারিশগণকে রেখে যান।
+        </div>
+    </div>
+
+    <!-- Family Members Card -->
+    <div class="full-width-card">
+        <div class="card-title">
+            <i class="fas fa-users"></i>
+            উত্তরাধিকারগণ
+
+            <span class="members-badge">
+                <i class="fas fa-user-friends"></i>
+                মোট: ৩
+            </span>
+        </div>
+
+        <table class="members-table">
+            <thead>
+                <tr>
+                    <th>ক্রমিক</th>
+                    <th>নাম</th>
+                    <th>সম্পর্ক</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>১</td>
+                    <td><strong>সন্ধ্যা রানী কুন্ডু</strong></td>
+                    <td>স্ত্রী</td>
+                </tr>
+
+                <tr>
+                    <td>২</td>
+                    <td><strong>পলি রানী কুন্ডু</strong></td>
+                    <td>কন্যা</td>
+                </tr>
+
+                <tr>
+                    <td>৩</td>
+                    <td><strong>শিবানী রানী কুন্ডু</strong></td>
+                    <td>কন্যা</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Wish Statement Card -->
+    <div class="full-width-card">
+        <div class="card-title">
+            <i class="fas fa-heart"></i>
+            শুভেচ্ছা
+        </div>
+
+        <div class="statement-text">
+            আমি মরহুমের আত্মার মাগফেরাত ও ওয়ারিশগণকে সর্বাঙ্গীণ মঙ্গল কামনা করি।
+        </div>
+    </div>
+
+</div>
+
+<button class="print-button" onclick="window.print()">
+    <i class="fas fa-print"></i>
+    প্রিন্ট করুন
+</button>
+
+</body>
 </html>
